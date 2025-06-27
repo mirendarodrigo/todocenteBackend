@@ -73,6 +73,17 @@ app.get('/api/tareas/:uid', async (req, res) => {
   }
 });
 
+app.delete('/api/tareas/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Tarea.findByIdAndDelete(id);
+    res.json({ mensaje: "Tarea eliminada correctamente" });
+  } catch (error) {
+    console.error("Error al eliminar tarea:", error);
+    res.status(500).json({ error: "Error al eliminar tarea" });
+  }
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
