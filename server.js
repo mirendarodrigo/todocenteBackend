@@ -58,7 +58,6 @@ app.post('/api/tareas', async (req, res) => {
   }
 });
 
-// Endpoint GET 
 app.get('/api/tareas/:uid', async (req, res) => {
   try {
     const uid = req.params.uid; 
@@ -83,6 +82,18 @@ app.delete('/api/tareas/:id', async (req, res) => {
     res.status(500).json({ error: "Error al eliminar tarea" });
   }
 });
+
+app.put('/api/tareas/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const actualizada = await Tarea.findByIdAndUpdate(id, req.body, { new: true });
+    res.json(actualizada);
+  } catch (error) {
+    console.error("Error al actualizar tarea:", error);
+    res.status(500).json({ error: "Error al actualizar tarea" });
+  }
+});
+
 
 
 const PORT = process.env.PORT || 3000;
