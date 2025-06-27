@@ -42,7 +42,7 @@ app.post('/api/tareas', async (req, res) => {
       institucion: datos.institucion,
       curso: datos.curso,
       comentario: datos.comentario,
-      estado: datos.estado || "toDo"
+      estado: datos.estado || "todo"
     });
 
     
